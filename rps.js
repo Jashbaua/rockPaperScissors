@@ -1,11 +1,11 @@
 function getComputerChoice(){
-    return Math.floor(Math.random()*3)
-}
-function getHumanChoice(){
-    switch(prompt("Write rock, paper or scissor")){
-        case "rock":return 0;
-        case "paper":return 1;
-        case "scissor":return 2;
+    switch(Math.floor(Math.random()*3)){
+        case 0:return "rock"
+        case 1:return "paper"
+        case 2:return "scissor"
     }
 }
-console.log(getHumanChoice())
+function getHumanChoice(){
+    return prompt("Choose rock, paper or scissor")
+}
+let humanScore=0,computerScore=0;

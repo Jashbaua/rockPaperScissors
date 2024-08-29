@@ -10,31 +10,58 @@ function getHumanChoice(){
 }
 let humanScore=0,computerScore=0;
 function playRound(humanChoice=getHumanChoice(),computerChoice=getComputerChoice()){
-    humanChoice=humanChoice.charAt(0).toUpperCase()+humanChoice.slice(1).toLowerCase()
     function win(){
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++
+        return `You win! ${humanChoice} beats ${computerChoice}`;
     }
     function lose(){
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
         computerScore++
+        return `You lose! ${computerChoice} beats ${humanChoice}`;
     }
     let tie=`Tie! ${computerChoice} and ${humanChoice} tie`
     if(humanChoice==computerChoice){
-        console.log(tie);
-        return;
+        return (tie);
     }
     switch(humanChoice){
         case "Rock":
-            computerChoice=="Paper"?win():lose();
-            break;
+            return computerChoice=="Paper"?lose():win();
         case "Paper":
-            computerChoice=="Scissor"?win():lose();
-            break;
+            return computerChoice=="Scissor"?lose():win();
         case "Scissor":
-            computerChoice=="Rock"?win():lose();
-            break;
+            return computerChoice=="Rock"?lose():win();
         default:
             console.log("Invalid word");
     }
 }
+const rockBtn=document.createElement("button")
+const paperBtn=document.createElement("button")
+const scissorBtn=document.createElement("button")
+rockBtn.textContent="Rock"
+paperBtn.textContent="Paper"
+scissorBtn.textContent="Scissor"
+document.body.appendChild(rockBtn)
+document.body.appendChild(paperBtn)
+document.body.appendChild(scissorBtn)
+const btns=document.querySelectorAll('button')
+const result=document.createElement('p')
+const score=document.createElement("div")
+document.body.appendChild(score)
+const scorep=document.createElement('p')
+score.appendChild(scorep)
+score.appendChild(result)
+scorep.textContent=`Your score:${humanScore} Computer score:${computerScore}`
+result.setAttribute("style","white-space:pre")
+btns.forEach((btn)=>{
+    btn.addEventListener('click',()=>{
+        result.textContent=playRound(btn.textContent)
+        scorep.textContent=`Your score:${humanScore} Computer score:${computerScore}`
+        if(humanScore==5){
+            result.textContent="You won!"
+            humanScore=computerScore=0;
+        }
+        if(computerScore==5){
+            result.textContent="You lost :("
+            humanScore=computerScore=0;
+        }
+    })
+})

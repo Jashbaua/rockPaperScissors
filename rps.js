@@ -8,8 +8,7 @@ function getComputerChoice(){
 function getHumanChoice(){
     return prompt("Choose rock, paper or scissor")
 }
-function playGame(){
-    let humanScore=0,computerScore=0;
+let humanScore=0,computerScore=0;
 function playRound(humanChoice=getHumanChoice(),computerChoice=getComputerChoice()){
     humanChoice=humanChoice.charAt(0).toUpperCase()+humanChoice.slice(1).toLowerCase()
     function win(){
@@ -39,13 +38,3 @@ function playRound(humanChoice=getHumanChoice(),computerChoice=getComputerChoice
             console.log("Invalid word");
     }
 }
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
-if(humanScore>computerScore)console.log("You win!")
-else if(humanScore<computerScore)console.log("You lost!")
-else console.log("Oops tie!")
-}
-playGame()
